@@ -1,6 +1,5 @@
 from fastapi import FastAPI , Body , HTTPException
 from pydantic import BaseModel
-
 from Routes import Schedule_organizing_program as SOP
 
 app = FastAPI()
@@ -14,6 +13,9 @@ class Task(BaseModel) :
 @app.get("/schedule/check_list")
 def check() :
     return SOP.check_list()
+
+# @app.get("/schedule/optimized_profit_plan")
+# def optimized_route() :
 
 @app.delete("/schedule/delete_task")
 def clear_current_tasks() :

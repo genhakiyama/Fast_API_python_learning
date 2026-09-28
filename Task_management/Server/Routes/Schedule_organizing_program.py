@@ -15,6 +15,11 @@ class Task :
 
 tasks = []
 
+def process() :
+    tasks.sort(key = lambda x : (x.prior , x.start_day , x.end_day) , reverse = True)
+    
+               
+
 def assign_task(start_day : int , end_day : int , priority : int , name_task : str) :
     task = Task(start_day , end_day , priority , name_task)
     if task.valid() :
@@ -22,9 +27,6 @@ def assign_task(start_day : int , end_day : int , priority : int , name_task : s
         return True 
     else :
         return False 
-
-def process() :
-    tasks.sort(key = lambda x : (x.prior , x.start_day , x.end_day) , reverse = True)
 
 def check_list() :
     process()
