@@ -1,25 +1,12 @@
 from collections import deque
-from pydantic import BaseModel
-
-# class Task(BaseModel) :  -- using BaseModel method
-#     start_day : int 
-#     end_day : int 
-#     prior : int 
-#     id : str 
-#     is_done : bool = False 
-
-#     def valid(self) -> bool :
-#         if self.start_day > self.end_day :
-#             return False 
-#         return True 
 
 class Task :
-    def __init__(self , start : int , finish : int , prior : int , id : str , is_done = False) :
+    def __init__(self , start : int , finish : int , prior : int , id : str , is_done : str) :
         self.start_day = start 
         self.end_day = finish 
         self.prior = prior 
         self.id = id 
-        self.is_done = is_done 
+        self.status = is_done = "In Queue"
 
     def valid(self) -> bool :
         if self.start_day > self.end_day :

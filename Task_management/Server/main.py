@@ -26,4 +26,3 @@ def Receiving_task(task : Task) :
         return {"Message" : "Succesfully assign task"}
     else :
         raise HTTPException(status_code = 400 , detail = "Invalid input : Please review start and finish day")
-
