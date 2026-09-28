@@ -22,12 +22,11 @@ items = []
 @app.post("/schedule/task_insert" , response_model=list[Item])
 def Receiving_Request(item : Item) :
     if item.valid() :
-        items.append(item)
+        items.append(item)  
         # return "Your schedule before adjusting : \n {items}"
         return items
     else :
         raise HTTPException(status_code = 400 , detail = "Bad Request : Invalid input")
-
 
 @app.put("/schedule/task_adjust")
 def Update_input(item_id : int , new_val : Item) :
