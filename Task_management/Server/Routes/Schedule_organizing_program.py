@@ -24,18 +24,20 @@ def find(id : str) :
             return x
     return None 
 
-def update_task(id : str , start = None , finish = None , prior = None) :
+def update_task(id : str , start_day = None , end_day = None , prior = None , name = None) :
     task = find(id)
     if task is None :
         return None 
+    old_task = {task.start_day , task.end_day , task.prior , task.status}
 
-    task.start_day = start if start else task.start_day 
-    task.end_day = finish if finish else task.end_day 
-    task.prior = prior if prior else task.prior
+    if start_day is not None : task.start_day = start_day
+    if end_day is not None : task.end_day = end_day
+    if prior is not None : task.prior = prior
+    if name is not None : task.status = name
 
-    if task.valid() == False :
-        return False  
-
+    if not task.valid() :
+        task.start_day , task.end_day , task.prior , task.status = old_task
+        return False 
     process()
     return task
 

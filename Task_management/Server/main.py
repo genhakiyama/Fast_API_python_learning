@@ -21,14 +21,14 @@ def clear_current_tasks() :
     return {"Tasks in Queue" : "None"}
 
 @app.put("/schedule/update_task")
-def update_task(id : str , change = Task) :
-    result = SOP.update_task(id , **change.model_dump(exclude_none = True))
+def update_task(id: str, change: Task):
+    result = SOP.update_task(id, **change.model_dump(exclude_none=True))
 
-    if result is None :
-        raise HTTPException(status_code = 404 , delail = f"Not found task named {id}")
-    if result is False :
-        raise HTTPException(status_code = 400 , detail = "Invalid start and finish day")
-    return {"Message" : "Task updated" , "task" : result}
+    if result is None:
+        raise HTTPException(status_code=404, detail=f"Not found task named {id}")
+    if result is False:
+        raise HTTPException(status_code=400, detail="Invalid start and finish day")
+    return {"Message": "Task updated", "task": vars(result)}
 
 @app.post("/schedule/insert")
 def Receiving_task(task : Task) :
