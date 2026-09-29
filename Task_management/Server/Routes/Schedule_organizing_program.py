@@ -1,12 +1,12 @@
 from collections import deque
 
 class Task :
-    def __init__(self , start : int , finish : int , prior : int , id : str , is_done : str) :
+    def __init__(self , start : int , finish : int , prior : int , id : str , is_done : str = "In Queue") :
         self.start_day = start 
         self.end_day = finish 
         self.prior = prior 
         self.id = id 
-        self.status = is_done = "In Queue"
+        self.status = is_done 
 
     def valid(self) -> bool :
         if self.start_day > self.end_day :
@@ -17,8 +17,27 @@ tasks = []
 
 def process() :
     tasks.sort(key = lambda x : (x.prior , x.start_day , x.end_day) , reverse = True)
-    
-               
+
+def find(id : str) :
+    for x in tasks :
+        if x.id == id :
+            return x
+    return None 
+
+def update_task(id : str , start = None , finish = None , prior = None) :
+    task = find(id)
+    if task is None :
+        return None 
+
+    task.start_day = start if start else task.start_day 
+    task.end_day = finish if finish else task.end_day 
+    task.prior = prior if prior else task.prior
+
+    if task.valid() == False :
+        return False  
+
+    process()
+    return task
 
 def assign_task(start_day : int , end_day : int , priority : int , name_task : str) :
     task = Task(start_day , end_day , priority , name_task)
